@@ -10,8 +10,8 @@ import {
 } from 'react-router-dom';
 
 export default class App extends Component {
-  pageSize = 5;
-  country = "in";
+  pageSize = 10;
+  country = "us";
   apiKey = process.env.REACT_APP_NEWS_API;
   render() {
     return (

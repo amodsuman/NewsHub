@@ -3,7 +3,19 @@ import { NewsItem } from './NewsItem';
 import Spinner from './Spinner';
 import PropTypes from 'prop-types';
 
-export class News extends Component {   
+export class News extends Component { 
+
+    static defaultProps = {
+        country: 'in',
+        pageSize: 8,
+        category: 'general'
+    }
+    
+    static propTypes = {
+        country: PropTypes.string,
+        pageSize: PropTypes.number,
+        category: PropTypes.string
+    }  
     
     capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -33,8 +45,7 @@ export class News extends Component {
             totalResults: parsedData.totalResults,
             loading: false
         });
-    }
-    
+    }    
 
     handlePrevClick = async () => {
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.pageSize}&page=${this.state.page - 1}`;
@@ -58,9 +69,7 @@ export class News extends Component {
             articles: parsedData.articles,
             loading: false
         })
-    }
-
-    
+    }    
 
   render() {
     return (
@@ -81,18 +90,6 @@ export class News extends Component {
         </div>
     )
   }
-}
-
-News.defaultProps = {
-    country: 'in',
-    pageSize: 8,
-    category: 'general'
-}
-
-News.propTypes = {
-    country: PropTypes.string,
-    pageSize: PropTypes.number,
-    category: PropTypes.string
 }
 
 export default News
